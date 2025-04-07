@@ -29,11 +29,13 @@ jobs:
     - name: Build and push Docker image
       run: |
         docker build -t medusa-backend ./medusa
-        
 
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
 
     - name: Apply Terraform
       run: |
-        cd Terraform
+        cd terraform
         terraform init
         terraform apply -auto-approve -var="db_password=${{ secrets.DB_PASSWORD }}"
+
