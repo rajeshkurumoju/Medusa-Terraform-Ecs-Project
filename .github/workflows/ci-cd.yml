@@ -28,9 +28,10 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        IMAGE_URI=${{ secrets.ECR_REGISTRY }}/${{ secrets.ECR_REPOSITORY }}:latest
-        docker build -t $IMAGE_URI .
-        docker push $IMAGE_URI
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 637423317288.dkr.ecr.us-east-1.amazonaws.com
+        docker build -t medusa-repo .
+        docker tag medusa-repo:latest 637423317288.dkr.ecr.us-east-1.amazonaws.com/medusa-repo:latest
+        docker push 637423317288.dkr.ecr.us-east-1.amazonaws.com/medusa-repo:latest
 
     - name: Apply Terraform
       run: |
