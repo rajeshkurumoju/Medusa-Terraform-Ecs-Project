@@ -12,7 +12,7 @@ resource "aws_ecs_task_definition" "medusa_task" {
   container_definitions = jsonencode([
     {
       name      = "medusa"
-      image     = "<ECR_IMAGE_URI>"
+      image     = "637423317288.dkr.ecr.us-east-1.amazonaws.com/medusa-repo:latest"
       portMappings = [
         {
           containerPort = 9000
@@ -36,8 +36,8 @@ resource "aws_ecs_service" "medusa_service" {
   desired_count   = 1
   launch_type     = "FARGATE"
   network_configuration {
-    subnets         = ["<SUBNET_ID>"]
-    security_groups = ["<SECURITY_GROUP_ID>"]
+    subnets         = ["subnet-094a6ff460330bdda"]
+    security_groups = ["sg-090d968695dc388eb"]
     assign_public_ip = true
   }
 }
