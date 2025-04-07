@@ -30,7 +30,7 @@ jobs:
       run: |
         aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 637423317288.dkr.ecr.us-east-1.amazonaws.com
         docker build -t medusa-repo .
-        docker tag medusa-repo:latest 637423317288.dkr.ecr.us-east-1.amazonaws.com/medusa-repo:latest
+        docker tag medusa-backend:latest 637423317288.dkr.ecr.us-east-1.amazonaws.com/medusa-repo:latest
         docker push 637423317288.dkr.ecr.us-east-1.amazonaws.com/medusa-repo:latest
 
     - name: Apply Terraform
